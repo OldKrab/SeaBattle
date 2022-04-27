@@ -14,6 +14,6 @@ public class Ship
 
     public bool IsAlive()
     {
-        return Parts.Length > 0;
+        return Parts.Any(part => part.IsAlive);
     }
 }
