@@ -43,4 +43,9 @@ public class Field
     {
         Cells[shipPoint.Y, shipPoint.X] = part;
     }
+
+    public void Shoot(Point point)
+    {
+        throw new NotImplementedException();
+    }
 }
