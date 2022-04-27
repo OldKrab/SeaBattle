@@ -97,6 +97,39 @@ public class FieldTests
         Assert.IsTrue(ship.IsAlive());
     }
 
+    [TestMethod]
+    public void AddShipOverlap()
+    {
+        Field field = new Field();
+
+        field.AddShip(new Ship(3), new Point(1, 1), Orientation.Horizontal);
+        var exception = Assert.ThrowsException<ShipOverlappingException>(() =>
+            field.AddShip(new Ship(3), new Point(2, 0), Orientation.Vertical));
+        Assert.AreEqual(exception.OverlapPoint, new Point(2, 0));
+    }
+
+    [TestMethod]
+    public void AddShipTouchBorders()
+    {
+        Field field = new Field();
+        field.AddShip(new Ship(3), new Point(1, 1), Orientation.Horizontal);
+        var exception = Assert.ThrowsException<ShipOverlappingException>(() =>
+            field.AddShip(new Ship(1), new Point(0, 1), Orientation.Horizontal));
+        Assert.AreEqual(exception.OverlapPoint, new Point(0, 1));
+
+    }
+
+    [TestMethod]
+    public void AddShipTouchCorners()
+    {
+        Field field = new Field();
+        field.AddShip(new Ship(3), new Point(1, 1), Orientation.Horizontal);
+        var exception = Assert.ThrowsException<ShipOverlappingException>(() =>
+             field.AddShip(new Ship(1), new Point(0, 0), Orientation.Horizontal));
+        Assert.AreEqual(exception.OverlapPoint, new Point(0, 0));
+    }
+
+
 
     private void CheckShipAdded(Point[] shipPoints, Ship ship, Field field)
     {
