@@ -1,1 +1,1 @@
-﻿
+﻿Console.WriteLine("Entry Point");
