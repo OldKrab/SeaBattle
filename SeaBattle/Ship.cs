@@ -2,11 +2,13 @@
 
 public class Ship
 {
-    public Ship(int i)
+    public Ship(int size)
     {
-        throw new NotImplementedException();
+        Parts = new ShipPart[size];
+        for (int i = 0; i < Parts.Length; i++)
+            Parts[i] = new ShipPart();
     }
 
-    public int Size { get; set; }
+    public int Size => Parts.Length;
     public ShipPart[] Parts { get; set; }
 }
