@@ -15,9 +15,8 @@ public class FieldTests
         Assert.IsNotNull(field.Ships);
         Assert.AreEqual(field.Ships.Count, 0);
 
-        Assert.IsNotNull(field.Cells);
-        Assert.AreEqual(field.Cells.GetLength(0), Field.DefaultSize);
-        Assert.AreEqual(field.Cells.GetLength(1), Field.DefaultSize);
+        Assert.AreEqual(field.CellsHeight, Field.DefaultSize);
+        Assert.AreEqual(field.CellsWidth, Field.DefaultSize);
     }
 
 
@@ -61,7 +60,7 @@ public class FieldTests
         CheckShipAdded(shipPoints, ship, field);
     }
 
-    
+
     [TestMethod]
     public void ShootMiss()
     {
@@ -109,12 +108,12 @@ public class FieldTests
             Assert.AreSame(field.GetCell(shipPoint), shipPart);
         }
 
-        for (int i = 0; i < field.Cells.GetLength(0); i++)
-        for (int j = 0; j < field.Cells.GetLength(1); j++)
-        {
-            Point curPoint = new Point(i, j);
-            if (shipPoints.All(p => !p.Equals(curPoint)))
-                Assert.IsNull(field.GetCell(curPoint));
-        }
+        for (int i = 0; i < field.CellsWidth; i++)
+            for (int j = 0; j < field.CellsHeight; j++)
+            {
+                Point curPoint = new Point(i, j);
+                if (shipPoints.All(p => !p.Equals(curPoint)))
+                    Assert.IsNull(field.GetCell(curPoint));
+            }
     }
 }
