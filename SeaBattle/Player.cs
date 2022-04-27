@@ -11,6 +11,6 @@ public class Player
 
     public bool HasAliveShips()
     {
-        throw new NotImplementedException();
+        return Field.Ships.Any(ship => ship.IsAlive());
     }
 }
