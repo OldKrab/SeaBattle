@@ -66,7 +66,7 @@ public class FieldTests
     public void ShootMiss()
     {
         Field field = new Field();
-        Ship ship = new Ship(3);
+        Ship ship = new Ship(1);
 
         field.AddShip(ship, new Point(1, 1), Orientation.Horizontal);
 
