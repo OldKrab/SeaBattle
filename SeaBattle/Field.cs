@@ -11,14 +11,14 @@ public enum Orientation
 public class Field
 {
     public List<Ship> Ships { get; set; }
-    public int CellsHeight => _cells.GetLength(0);
-    public int CellsWidth => _cells.GetLength(1);
+    public int CellsHeight => _shipParts.GetLength(0);
+    public int CellsWidth => _shipParts.GetLength(1);
 
     public static int DefaultSize = 10;
 
     public Field()
     {
-        _cells = new ShipPart[DefaultSize, DefaultSize];
+        _shipParts = new ShipPart[DefaultSize, DefaultSize];
         Ships = new List<Ship>();
     }
 
@@ -27,7 +27,7 @@ public class Field
         Ships.Add(ship);
         for (int i = 0; i < ship.Size; i++)
         {
-            SetCell(position, ship.Parts[i]);
+            CheckAndSetCell(position, ship.Parts[i]);
             if (orientation == Orientation.Horizontal)
                 position.X++;
             else
@@ -35,21 +35,42 @@ public class Field
         }
     }
 
-    public ShipPart GetCell(Point shipPoint)
+    public ShipPart GetShipPart(Point shipPoint)
     {
-        return _cells[shipPoint.Y, shipPoint.X];
+        return _shipParts[shipPoint.Y, shipPoint.X];
     }
 
     public void Shoot(Point point)
     {
-        GetCell(point)?.Kill();
+        GetShipPart(point)?.Kill();
     }
 
 
-    private void SetCell(Point shipPoint, ShipPart part)
+    private void CheckAndSetCell(Point shipPoint, ShipPart part)
     {
-        _cells[shipPoint.Y, shipPoint.X] = part;
+        if (IsOverlapping(shipPoint, part))
+            throw new ShipOverlappingException(shipPoint);
+        SetShip(shipPoint, part);
     }
 
-    private ShipPart[,] _cells { get; set; }
+    private void SetShip(Point shipPoint, ShipPart part)
+    {
+        _shipParts[shipPoint.Y, shipPoint.X] = part;
+    }
+
+    private bool IsOverlapping(Point p, ShipPart part)
+    {
+        for (int i = -1; i <= 1; i++)
+            for (int j = -1; j <= 1; j++)
+                if (p.X + i >= 0 && p.X + i < CellsWidth && p.Y + j >= 0 && p.X + i < CellsHeight)
+                {
+                    var ship = GetShipPart(new Point(p.X + i, p.Y + j));
+                    if (ship != null && ship.Ship != part.Ship)
+                        return true;
+                }
+
+        return false;
+    }
+
+    private ShipPart[,] _shipParts { get; set; }
 }
