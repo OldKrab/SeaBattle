@@ -2,8 +2,8 @@
 
 public class Game
 {
-    public Player CurrentPlayer { get;  }
-    public Player OtherPlayer { get; }
+    public Player CurrentPlayer { get; private set; }
+    public Player OtherPlayer { get; private set;  }
 
     public Game()
     {
@@ -13,6 +13,6 @@ public class Game
 
     public void SwitchPlayers()
     {
-        throw new NotImplementedException();
+        (CurrentPlayer, OtherPlayer) = (OtherPlayer, CurrentPlayer);
     }
 }
