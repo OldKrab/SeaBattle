@@ -11,13 +11,14 @@ public enum Orientation
 public class Field
 {
     public List<Ship> Ships { get; set; }
-    public ShipPart[,] Cells { get; set; }
+    public int CellsHeight => _cells.GetLength(0);
+    public int CellsWidth => _cells.GetLength(1);
 
     public static int DefaultSize = 10;
 
     public Field()
     {
-        Cells = new ShipPart[DefaultSize, DefaultSize];
+        _cells = new ShipPart[DefaultSize, DefaultSize];
         Ships = new List<Ship>();
     }
 
@@ -36,16 +37,19 @@ public class Field
 
     public ShipPart GetCell(Point shipPoint)
     {
-        return Cells[shipPoint.Y, shipPoint.X];
-    }
-
-    private void SetCell(Point shipPoint, ShipPart part)
-    {
-        Cells[shipPoint.Y, shipPoint.X] = part;
+        return _cells[shipPoint.Y, shipPoint.X];
     }
 
     public void Shoot(Point point)
     {
         GetCell(point)?.Kill();
     }
+
+
+    private void SetCell(Point shipPoint, ShipPart part)
+    {
+        _cells[shipPoint.Y, shipPoint.X] = part;
+    }
+
+    private ShipPart[,] _cells { get; set; }
 }
