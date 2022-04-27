@@ -6,7 +6,7 @@ public class Ship
     {
         Parts = new ShipPart[size];
         for (int i = 0; i < Parts.Length; i++)
-            Parts[i] = new ShipPart();
+            Parts[i] = new ShipPart(this);
     }
 
     public int Size => Parts.Length;
