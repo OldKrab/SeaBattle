@@ -36,4 +36,13 @@ public class ShipTest
         Assert.IsFalse(ship.IsAlive());
     }
 
+    [TestMethod]
+    public void IsDeadAfterKillAllParts()
+    {
+        Ship ship = new Ship(3);
+        foreach (var shipPart in ship.Parts)
+            shipPart.Kill();
+        Assert.IsFalse(ship.IsAlive());
+    }
+
 }
