@@ -5,13 +5,14 @@ using SeaBattle;
 namespace SeaBattleTest;
 
 [TestClass]
-public class ShipTest
+public class ShipTests
 {
 
     private void InitWith(int n)
     {
         Ship ship = new Ship(n);
         Assert.AreEqual(ship.Size, n);
+        Assert.IsNotNull(ship.Parts);
         Assert.AreEqual(ship.Parts.Length, n);
         CollectionAssert.AllItemsAreNotNull(ship.Parts);
     }
