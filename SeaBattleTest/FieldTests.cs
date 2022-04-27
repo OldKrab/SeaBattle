@@ -20,8 +20,10 @@ public class FieldTests
         Assert.AreEqual(field.Cells.GetLength(1), Field.DefaultSize);
     }
 
-    private void CheckShipPoints(Point[] shipPoints, Ship ship, Field field)
+    private void CheckShipAdded(Point[] shipPoints, Ship ship, Field field)
     {
+        Assert.AreSame(field.Ships.Last(), ship);
+
         foreach (var (shipPoint, shipPart) in shipPoints.Zip(ship.Parts))
         {
             Assert.IsNotNull(field.GetCell(shipPoint));
@@ -47,7 +49,20 @@ public class FieldTests
         Point[] shipPoints = { new(1, 1) };
 
         field.AddShip(ship, position, orientation);
-        CheckShipPoints(shipPoints, ship, field);
+        CheckShipAdded(shipPoints, ship, field);
+    }
+
+    [TestMethod]
+    public void AddShipWithSize3Vertical()
+    {
+        Field field = new Field();
+        Ship ship = new Ship(3);
+        Point position = new Point(1, 1);
+        Orientation orientation = Orientation.Vertical;
+        Point[] shipPoints = { new(1, 1), new(1, 2), new(1, 3) };
+
+        field.AddShip(ship, position, orientation);
+        CheckShipAdded(shipPoints, ship, field);
     }
 
     [TestMethod]
@@ -57,22 +72,9 @@ public class FieldTests
         Ship ship = new Ship(3);
         Point position = new Point(1, 1);
         Orientation orientation = Orientation.Horizontal;
-        Point[] shipPoints = { new(1, 1), new(1, 2), new(1, 3) };
-
-        field.AddShip(ship, position, orientation);
-        CheckShipPoints(shipPoints, ship, field);
-    }
-
-    [TestMethod]
-    public void AddShipWithSize3Vertical()
-    {
-        Field field = new Field();
-        Ship ship = new Ship(3);
-        Point position = new Point(1, 1);
-        Orientation orientation = Orientation.Horizontal;
         Point[] shipPoints = { new(1, 1), new(2, 1), new(3, 1) };
 
         field.AddShip(ship, position, orientation);
-        CheckShipPoints(shipPoints, ship, field);
+        CheckShipAdded(shipPoints, ship, field);
     }
 }
