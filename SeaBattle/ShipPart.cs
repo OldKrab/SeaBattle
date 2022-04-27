@@ -8,6 +8,11 @@ public class ShipPart
         IsAlive = true;
     }
 
-    public Ship Ship { get; set; }
-    public bool IsAlive { get; set; }
+    public Ship Ship { get; }
+    public bool IsAlive { get; private set; }
+
+    public void Kill()
+    {
+        IsAlive = false;
+    }
 }
