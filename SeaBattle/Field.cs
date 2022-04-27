@@ -46,6 +46,6 @@ public class Field
 
     public void Shoot(Point point)
     {
-        throw new NotImplementedException();
+        GetCell(point)?.Kill();
     }
 }
