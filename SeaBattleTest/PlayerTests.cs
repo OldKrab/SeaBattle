@@ -43,7 +43,7 @@ public class PlayerTests
     {
         Player player = new Player();
         player.Field.AddShip(new Ship(1), new Point(1,1), Orientation.Horizontal);
-        player.Field.AddShip(new Ship(1), new Point(2,2), Orientation.Horizontal);
+        player.Field.AddShip(new Ship(1), new Point(3,3), Orientation.Horizontal);
         player.Field.Shoot(new Point(1,1));
         Assert.IsTrue(player.HasAliveShips());
     }
