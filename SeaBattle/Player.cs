@@ -8,4 +8,9 @@ public class Player
     {
         Field = new Field();
     }
+
+    public bool HasAliveShips()
+    {
+        throw new NotImplementedException();
+    }
 }
