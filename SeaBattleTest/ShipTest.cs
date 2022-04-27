@@ -22,6 +22,18 @@ public class ShipTest
     [TestMethod]
     public void InitWith0() => InitWith(0);
 
+    [TestMethod]
+    public void IsAliveAfterInitWith3()
+    {
+        Ship ship = new Ship(3);
+        Assert.IsTrue(ship.IsAlive());
+    }
 
+    [TestMethod]
+    public void IsDeadAfterInitWith0()
+    {
+        Ship ship = new Ship(0);
+        Assert.IsFalse(ship.IsAlive());
+    }
 
 }

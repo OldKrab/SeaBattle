@@ -11,4 +11,9 @@ public class Ship
 
     public int Size => Parts.Length;
     public ShipPart[] Parts { get; set; }
+
+    public bool IsAlive()
+    {
+        throw new NotImplementedException();
+    }
 }
