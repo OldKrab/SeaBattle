@@ -23,5 +23,8 @@ public class GameTests
         game.SwitchPlayers();
         Assert.AreSame(prevCurrentplayer, game.OtherPlayer);
         Assert.AreSame(prevOtherPlayer, game.CurrentPlayer);
+        game.SwitchPlayers();
+        Assert.AreSame(prevCurrentplayer, game.CurrentPlayer);
+        Assert.AreSame(prevOtherPlayer, game.OtherPlayer);
     }
 }
