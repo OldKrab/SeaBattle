@@ -14,6 +14,6 @@ public class Ship
 
     public bool IsAlive()
     {
-        throw new NotImplementedException();
+        return Parts.Length > 0;
     }
 }
