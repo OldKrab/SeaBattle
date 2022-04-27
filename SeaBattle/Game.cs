@@ -10,4 +10,9 @@ public class Game
         CurrentPlayer = new Player();
         OtherPlayer = new Player();
     }
+
+    public void SwitchPlayers()
+    {
+        throw new NotImplementedException();
+    }
 }
