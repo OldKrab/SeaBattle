@@ -86,6 +86,15 @@ public class FieldTests
     }
 
     [TestMethod]
+    public void ShootCell()
+    {
+        Field field = new Field();
+        var p = new Point(1, 1);
+        field.Shoot(p);
+        Assert.IsTrue(field.GetCell(p).IsShooted);
+    }
+
+    [TestMethod]
     public void ShootHitAndNotKill()
     {
         Field field = new Field();
