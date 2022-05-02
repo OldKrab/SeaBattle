@@ -15,4 +15,4 @@ public class Cell
         IsShooted = true;
         ShipPart?.Kill();
     }
-}
+} 

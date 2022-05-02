@@ -73,4 +73,9 @@ public class Field
     }
 
     private ShipPart[,] _shipParts { get; set; }
+
+    public Cell GetCell(Point shipPoint)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -137,8 +137,8 @@ public class FieldTests
 
         foreach (var (shipPoint, shipPart) in shipPoints.Zip(ship.Parts))
         {
-            Assert.IsNotNull(field.GetShipPart(shipPoint));
-            Assert.AreSame(field.GetShipPart(shipPoint), shipPart);
+            Assert.IsNotNull(field.GetCell(shipPoint).ShipPart);
+            Assert.AreSame(field.GetCell(shipPoint).ShipPart, shipPart);
         }
 
         for (int i = 0; i < field.CellsWidth; i++)
@@ -146,7 +146,7 @@ public class FieldTests
             {
                 Point curPoint = new Point(i, j);
                 if (shipPoints.All(p => !p.Equals(curPoint)))
-                    Assert.IsNull(field.GetShipPart(curPoint));
+                    Assert.IsNull(field.GetCell(curPoint).ShipPart);
             }
     }
 }
