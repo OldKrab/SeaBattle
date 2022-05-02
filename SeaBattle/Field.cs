@@ -19,6 +19,10 @@ public class Field
     public Field()
     {
         _cells = new Cell[DefaultSize, DefaultSize];
+        for (int i = 0; i < _cells.GetLength(0); i++)
+            for (int j = 0; j < _cells.GetLength(1); j++)
+                _cells[i, j] = new Cell();
+        
         Ships = new List<Ship>();
     }
 
