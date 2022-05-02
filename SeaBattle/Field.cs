@@ -41,7 +41,7 @@ public class Field
 
     public void Shoot(Point point)
     {
-        GetCell(point).ShipPart?.Kill();
+        GetCell(point).Shoot();
     }
 
 
