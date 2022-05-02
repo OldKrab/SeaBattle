@@ -12,6 +12,7 @@ public class PlayerTests
     {
         Player player = new Player();
         Assert.IsNotNull(player.Field);
+        Assert.IsNotNull(player.Name);
     }
 
     [TestMethod]

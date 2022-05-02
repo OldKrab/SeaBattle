@@ -3,6 +3,7 @@
 public class Player
 {
     public Field Field { get; }
+    public string Name { get; set; }
 
     public Player()
     {
